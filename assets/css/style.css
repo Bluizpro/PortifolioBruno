@@ -208,12 +208,7 @@ body nav#navigation .social-links li:nth-child(2) svg:hover path:nth-child(2) {
 }
 
 body.light-mode .social-links li:nth-child(2) svg:hover path:nth-child(2),
-body.light-mode
-  nav#navigation
-  .social-links
-  li:nth-child(2)
-  svg:hover
-  path:nth-child(2) {
+body.light-mode nav#navigation .social-links li:nth-child(2) svg:hover path:nth-child(2) {
   fill: #000;
 }
 
@@ -455,6 +450,7 @@ body.menu-expanded button path {
   from {
     width: 0;
   }
+
   to {
     width: 27.5rem;
   }
@@ -464,6 +460,7 @@ body.menu-expanded button path {
   from {
     border-right-color: var(--primary-color);
   }
+
   to {
     border-right-color: transparent;
   }
@@ -487,9 +484,11 @@ body.menu-expanded button path {
   0% {
     transform: translateY(2rem);
   }
+
   50% {
     transform: translateY(-2rem);
   }
+
   100% {
     transform: translateY(2rem);
   }
@@ -561,6 +560,7 @@ body.light-mode #home img#notebook-2-white {
   from {
     opacity: 0;
   }
+
   to {
     opacity: 1;
   }
@@ -571,6 +571,7 @@ body.light-mode #home img#notebook-2-white {
     right: -4rem;
     opacity: 0;
   }
+
   to {
     right: -2rem;
     opacity: 1;
@@ -636,7 +637,7 @@ body.light-mode #home img#notebook-2-white {
   font-style: italic;
 }
 
-#projects header p + a {
+#projects header p+a {
   padding: 0.8rem 2rem;
   color: var(--paragraph);
 
@@ -697,7 +698,7 @@ body.light-mode #home img#notebook-2-white {
   transition: 300ms;
 }
 
-#projects .card:hover > .img-wrapper img {
+#projects .card:hover>.img-wrapper img {
   filter: opacity(0.5);
 }
 
@@ -718,7 +719,7 @@ body.light-mode #home img#notebook-2-white {
   transition: 400ms;
 }
 
-#projects .card:hover > .img-wrapper .buttons {
+#projects .card:hover>.img-wrapper .buttons {
   visibility: visible;
   opacity: 1;
 }
@@ -756,7 +757,7 @@ body.light-mode #home img#notebook-2-white {
   cursor: pointer;
 }
 
-#projects .card .buttons a:hover > svg {
+#projects .card .buttons a:hover>svg {
   fill: #fff;
 }
 
@@ -1006,7 +1007,7 @@ footer .social-links li:nth-child(4) svg path:nth-child(2) {
   transition: 500ms;
 }
 
-#toggle input:checked + label::before {
+#toggle input:checked+label::before {
   transform: translateX(3.8rem);
 }
 
@@ -1218,27 +1219,15 @@ footer .social-links li:nth-child(4) svg path:nth-child(2) {
     stroke: #ff377a;
   }
 
-  nav#navigation.scroll
-    .social-links
-    li:nth-child(2)
-    svg:hover
-    path:nth-child(2) {
+  nav#navigation.scroll .social-links li:nth-child(2) svg:hover path:nth-child(2) {
     fill: #fff;
   }
 
-  nav#navigation.scroll
-    .social-links
-    li:nth-child(3)
-    svg:hover
-    path:nth-child(2) {
+  nav#navigation.scroll .social-links li:nth-child(3) svg:hover path:nth-child(2) {
     fill: #0a66c2;
   }
 
-  nav#navigation.scroll
-    .social-links
-    li:nth-child(4)
-    svg:hover
-    path:nth-child(2) {
+  nav#navigation.scroll .social-links li:nth-child(4) svg:hover path:nth-child(2) {
     fill: #00abf0;
   }
 
@@ -1289,6 +1278,7 @@ footer .social-links li:nth-child(4) svg path:nth-child(2) {
     from {
       width: 0;
     }
+
     to {
       width: 38rem;
     }
@@ -1468,6 +1458,7 @@ footer .social-links li:nth-child(4) svg path:nth-child(2) {
     from {
       width: 0;
     }
+
     to {
       width: 23.5rem;
     }
@@ -1560,6 +1551,7 @@ footer .social-links li:nth-child(4) svg path:nth-child(2) {
     from {
       width: 0;
     }
+
     to {
       width: 18rem;
     }
@@ -1644,22 +1636,130 @@ footer .social-links li:nth-child(4) svg path:nth-child(2) {
   }
 
   /*===== CONTACT ==================================*/
-
-  #contact ul a {
-    font-size: 1.1rem;
+  /* Layout principal da seção */
+  #contact .wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
+    flex-wrap: wrap;
+    padding: 40px 20px;
   }
 
-  #contact svg {
-    width: 1.8rem;
-    height: 1.8rem;
+  /* Coluna esquerda */
+  #contact .col-a {
+    flex: 1;
+    min-width: 300px;
+    max-width: 500px;
   }
 
+  #contact .col-a header h2 {
+    color: #00aaff;
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+
+  /* Lista de contato */
+  #contact .col-a .content ul {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 20px;
+  }
+
+  #contact .col-a .content ul li {
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1rem;
+    color: #ccc;
+  }
+
+  #contact .col-a .content ul li svg,
+  #contact .col-a .content ul li img {
+    width: 24px;
+    height: 24px;
+  }
+
+  /* Botão principal do WhatsApp */
+  .whatsapp-wrapper {
+    position: relative;
+    display: inline-block;
+  }
+
+  .whatsapp-toggle {
+    background-color: #00856F;
+    color: white;
+    font-weight: bold;
+    padding: 12px 24px;
+    border: 2px solid transparent;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    transition: background-color 0.3s ease, border-color 0.3s;
+  }
+
+  .whatsapp-toggle:hover {
+    background-color: #006e5e;
+    border-color: #00ffaa;
+  }
+
+  /* Dropdown */
+  .whatsapp-dropdown {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    margin-top: 10px;
+    background-color: #1a1a1a;
+    border-radius: 6px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+    min-width: 200px;
+    z-index: 10;
+    overflow: hidden;
+    animation: fadeIn 0.3s ease forwards;
+  }
+
+  .whatsapp-dropdown a {
+    padding: 12px 16px;
+    color: #00ccff;
+    text-decoration: none;
+    transition: background 0.3s;
+  }
+
+  .whatsapp-dropdown a:hover {
+    background-color: #2a2a2a;
+  }
+
+  /* Fade animation */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Coluna da imagem */
   #contact .col-b img {
-    width: 9rem;
+    max-width: 300px;
+    animation: float 3s ease-in-out infinite;
   }
 
-  #contact .col-b::after {
-    width: 9rem;
-    height: 2rem;
+  /* Flutuar levemente o celular */
+  @keyframes float {
+
+    0%,
+    100% {
+      transform: translateY(0px);
+    }
+
+    50% {
+      transform: translateY(-10px);
+    }
   }
 }

@@ -1,5 +1,6 @@
 import { projetos } from "./projetos.js";
 
+/* ========== ELEMENTOS DOM ========== */
 const navigation = document.querySelector("#navigation");
 const backToTopButton = document.querySelector("#backToTopButton");
 const toggle = document.querySelector("#sw-checkbox");
@@ -10,38 +11,101 @@ const notebook_2 = document.querySelector("#notebook-2");
 const notebook_2_white = document.querySelector("#notebook-2-white");
 const vidro = document.querySelector("#vidro");
 
-window.addEventListener("load", function begin() {
+const sections = ["about", "projects", "knowledge", "contact"].map((id) =>
+  document.getElementById(id)
+);
+
+/* ========== EVENTOS ========== */
+window.addEventListener("load", () => {
   projetos(projectsSection);
   const desafioBtn = document.querySelector("#desafio");
 
-  desafioBtn.addEventListener("click", () => {
-    desafios(projectsSection);
-    document
-      .querySelector("#backToProjectsBtn")
-      .addEventListener("click", begin);
-  });
+  if (desafioBtn) {
+    desafioBtn.addEventListener("click", () => {
+      desafios(projectsSection);
+      document
+        .querySelector("#backToProjectsBtn")
+        .addEventListener("click", () => location.reload()); // evita erro com `begin` fora de escopo
+    });
+  }
+
+  // Delay para sumir os notebooks
+  setTimeout(() => {
+    notebook_1.style.opacity = 0;
+    [notebook_1, notebook_2, notebook_2_white, vidro].forEach((el) => {
+      el.style.animation = "none";
+    });
+  }, 4000);
 });
 
 window.addEventListener("scroll", onScroll);
 onScroll();
 
-window.onload = setTimeout(() => {
-  notebook_1.style.opacity = 0;
+toggle.addEventListener("change", () => {
+  document.body.classList.toggle("light-mode");
+});
 
-  notebook_1.style.animation = "none";
-  notebook_2.style.animation = "none";
-  notebook_2_white.style.animation = "none";
-  vidro.style.animation = "none";
-}, 4000);
+document.addEventListener("DOMContentLoaded", () => {
+  // Alternar imagem
+  const img = document.getElementById("imagem");
+  const imagem1 = "./assets/images/bruno3.png";
+  const imagem2 = "./assets/images/bruno.jpg";
 
+  if (img) {
+    setInterval(() => {
+      img.src = img.src.includes("bruno3.png") ? imagem2 : imagem1;
+    }, 10000);
+  }
+
+  // Abrir/fechar menu
+  document
+    .querySelectorAll(".open")
+    .forEach((btn) =>
+      btn.addEventListener("click", () =>
+        document.body.classList.add("menu-expanded")
+      )
+    );
+
+  document
+    .querySelectorAll(".close")
+    .forEach((btn) =>
+      btn.addEventListener("click", () =>
+        document.body.classList.remove("menu-expanded")
+      )
+    );
+
+  // WhatsApp dropdown (por clique)
+  const toggleButton = document.querySelector(".whatsapp-toggle");
+  const dropdown = document.getElementById("whatsappMenu");
+
+  if (toggleButton && dropdown) {
+    toggleButton.addEventListener("click", () => {
+      dropdown.style.display =
+        dropdown.style.display === "block" ? "none" : "block";
+    });
+
+    // Fecha ao clicar fora
+    document.addEventListener("click", (e) => {
+      if (!toggleButton.contains(e.target) && !dropdown.contains(e.target)) {
+        dropdown.style.display = "none";
+      }
+    });
+  }
+});
+
+/* ========== SCROLL BEHAVIOR ========== */
 function onScroll() {
   showNavOnScroll();
   showBackToTopButtonOnScroll();
+  sections.forEach(activateMenuAtCurrentSection);
+}
 
-  activateMenuAtCurrentSection(about);
-  activateMenuAtCurrentSection(projects);
-  activateMenuAtCurrentSection(knowledge);
-  activateMenuAtCurrentSection(contact);
+function showNavOnScroll() {
+  navigation.classList.toggle("scroll", scrollY > 0);
+}
+
+function showBackToTopButtonOnScroll() {
+  backToTopButton.classList.toggle("show", scrollY > 550);
 }
 
 function activateMenuAtCurrentSection(section) {
@@ -49,77 +113,33 @@ function activateMenuAtCurrentSection(section) {
   const sectionTop = section.offsetTop;
   const sectionHeight = section.offsetHeight;
 
-  const sectionTopReachOrPassedTargetLine = targetLine >= sectionTop;
-  const sectionEndsAt = sectionTop + sectionHeight;
-  const sectionEndPassedTargetLine = sectionEndsAt <= targetLine;
+  const sectionInView =
+    targetLine >= sectionTop && targetLine <= sectionTop + sectionHeight;
 
-  const sectionBoundaries =
-    sectionTopReachOrPassedTargetLine && !sectionEndPassedTargetLine;
-
-  const sectionId = section.getAttribute("id");
-  const menuElement = document.querySelector(`.menu a[href*=${sectionId}]`);
-
-  menuElement.classList.remove("active");
-
-  if (sectionBoundaries) {
-    menuElement.classList.add("active");
+  const menuElement = document.querySelector(`.menu a[href*="${section.id}"]`);
+  if (menuElement) {
+    menuElement.classList.toggle("active", sectionInView);
   }
 }
-
-function showNavOnScroll() {
-  if (scrollY > 0) {
-    navigation.classList.add("scroll");
-  } else {
-    navigation.classList.remove("scroll");
+ function toggleWhatsappMenu() {
+    const menu = document.getElementById("whatsappMenu");
+    menu.style.display = menu.style.display === "block" ? "none" : "block";
   }
-}
 
-function showBackToTopButtonOnScroll() {
-  if (scrollY > 550) {
-    backToTopButton.classList.add("show");
-  } else {
-    backToTopButton.classList.remove("show");
-  }
-}
-
-openMenu();
-function openMenu() {
-  const openBtns = document.querySelectorAll(".open");
-  openBtns.forEach((e) => {
-    e.addEventListener("click", () => {
-      document.body.classList.add("menu-expanded");
-    });
+  document.addEventListener("click", function (e) {
+    const toggleBtn = document.querySelector(".whatsapp-toggle");
+    const dropdown = document.getElementById("whatsappMenu");
+    if (!toggleBtn.contains(e.target) && !dropdown.contains(e.target)) {
+      dropdown.style.display = "none";
+    }
   });
-}
-
-closeMenu();
-function closeMenu() {
-  const closeBtns = document.querySelectorAll(".close");
-  closeBtns.forEach((e) => {
-    e.addEventListener("click", () => {
-      document.body.classList.remove("menu-expanded");
-    });
-  });
-}
-document.addEventListener("DOMContentLoaded", function () {
-  const img = document.getElementById("imagem");
-
-  // Defina as imagens que deseja alternar
-  const imagem1 = "./assets/images/bruno3.png";
-  const imagem2 = "./assets/images/bruno.jpg";
-
-  // Alterna a imagem a cada 10 segundos (10000 milissegundos)
-  setInterval(() => {
-    img.src = img.src.includes("bruno3.png") ? imagem2 : imagem1;
-  }, 10000);
-});
-
+/* ========== ANIMAÇÕES ========= */
 ScrollReveal({
   origin: "bottom",
   distance: "50px",
   duration: 1000,
-}).reveal(
-  `#home, 
+}).reveal(`
+  #home, 
   #home img, 
   #about, 
   #about header, 
@@ -129,12 +149,8 @@ ScrollReveal({
   #projects header,
   #projects .card,
   #knowledge,
-  #knowledg header,
-  #knowledg .card,
+  #knowledge header,
+  #knowledge .card,
   #contact,
-  #contact header`
-);
-
-toggle.addEventListener("change", () => {
-  document.body.classList.toggle("light-mode");
-});
+  #contact header
+`);
