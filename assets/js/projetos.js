@@ -47,7 +47,7 @@ function projetos(section) {
           <p>React -  SQLITE - BOOTSTRAP - JS</p>
         </div>
         <div class="card">
-          <h3>Automatização Logística</h3>
+          <h3> E-commerce de venda produtos Afro</h3>
           <div class="img-wrapper">
             <img
               src="./assets/images/projects/DandaraPreta.jpg"
@@ -84,14 +84,14 @@ function projetos(section) {
             </div>
           </div>
           <p>
-            Apresento o "Projeto Dandara", um e-commerce desenvolvido em
+            Apresento o "Projeto Dandara", um E-commerce desenvolvido em
                     grupo como parte do meu curso. Propósito: Celebrar a cultura
                     afro com uma plataforma exclusiva para produtos afro.
           </p>
           <p> Html - BOOTSTRAP  </p>
         </div>
         <div class="card">
-          <h3>Gestor De Encomenda</h3>
+          <h3>Gerenciamento de Encomendas</h3>
           <div class="img-wrapper">
             <img src="./assets/images/projects/WhatsApp Image 2025-03-14 at 19.16.46.jpeg" alt="Imagem do projeto." />
             <div class="buttons">
@@ -128,7 +128,7 @@ function projetos(section) {
           <p> Vue.js - c# - Postgresql - Node.js </p>
         </div>
         <div class="card">
-          <h3> ERP para gestão de Vendas </h3>
+          <h3> Sistema de Aquecimento de WhatsApp </h3>
           <div class="img-wrapper">
             <img src="./assets/images/projects/WhatsApp Image 2025-03-14 at 19.20.41.jpeg" alt="Imagem do projeto." />
             <div class="buttons">
@@ -165,7 +165,7 @@ function projetos(section) {
           <p> Python - React - Postgresql - Node.js  </p>
         </div>
         <div class="card">
-          <h3>Transcritor de Audio</h3>
+          <h3>Sistema de Gerenciamento de Filmes</h3>
           <div class="img-wrapper">
             <img src="./assets/images/projects/dsmoviel-frente.jpeg" alt="Imagem do projeto." />
             <div class="buttons">
@@ -204,7 +204,7 @@ function projetos(section) {
 
 
         <div class="card">
-          <h3>Transcritor de Audio</h3>
+          <h3>CRM De maturação De WhatsApp</h3>
           <div class="img-wrapper">
             <img src="./assets/images/projects/Nextflow.jpg" alt="Imagem do projeto." />
             <div class="buttons">
